@@ -2,6 +2,7 @@ import requests
 import os
 from os import listdir
 from os.path import isfile, join
+from datetime import datetime
 
 def get_html_source(url):
     try:
@@ -26,7 +27,9 @@ def download_image(url, save_path):
     except requests.RequestException as e:
         print(f"Failed to download image: {e}")
 
-url = "https://soho.nascom.nasa.gov/data/REPROCESSING/Completed/2024/eit171/20240324/"
+today = datetime.today().strftime('%Y%m%d')
+print("Today is " + str(today))
+url = "https://soho.nascom.nasa.gov/data/REPROCESSING/Completed/2024/eit171/" + str(today) + "/"
 html_source = get_html_source(url)
 full_links = []
 image_names = []
